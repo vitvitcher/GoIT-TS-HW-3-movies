@@ -29,9 +29,11 @@ function App() {
 
   const onModalClose = () => {
     setModalOpen(false)
+    setSelectedMovie(null)
   }
   const handleSearch = async (query: string) => {
     try {
+      setMovies([])
       setIsError(false)
       setIsLoading(true)
       const fetchedMovies: Movie[] = await fetchMovies(query)
