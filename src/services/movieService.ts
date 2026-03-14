@@ -9,9 +9,12 @@ const options = {
     }
 };
 
+interface FetchedData {
+    results: Movie[]
+}
 
 export async function fetchMovies(query: string): Promise<Movie[]> {
 
-    const results: Movie[] = (await axios.get(url + `&query=${query}`, options)).data.results
+    const results: Movie[] = (await axios.get<FetchedData>(url + `&query=${query}`, options)).data.results
     return results
 }

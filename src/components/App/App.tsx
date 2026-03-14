@@ -18,7 +18,7 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
   const [movies, setMovies] = useState<Movie[]>([])
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>()
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
   const onMovieSelect = (movie: Movie) => {
     setSelectedMovie(movie)
   }
