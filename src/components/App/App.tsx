@@ -15,20 +15,15 @@ function App() {
   console.log("App rendered")
   const notify = () => toast.error('No movies found for your request.');
 
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
   const [movies, setMovies] = useState<Movie[]>([])
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
-
-
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>()
   const onMovieSelect = (movie: Movie) => {
     setSelectedMovie(movie)
-    setModalOpen(true)
   }
 
   const onModalClose = () => {
-    setModalOpen(false)
     setSelectedMovie(null)
   }
   const handleSearch = async (query: string) => {
@@ -65,7 +60,7 @@ function App() {
       {isLoading && <Loader></Loader>}
       {isError && <ErrorMessage ></ErrorMessage>}
       {movies.length > 0 && <MovieGrid onSelect={onMovieSelect} movies={movies}></MovieGrid>}
-      {modalOpen && <MovieModal onClose={onModalClose} movie={selectedMovie}
+      {selectedMovie && <MovieModal onClose={onModalClose} movie={selectedMovie}
       ></MovieModal>}
     </>
   )
